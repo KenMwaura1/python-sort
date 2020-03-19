@@ -133,11 +133,14 @@ dmypy.json
 ### Example user template template
 ### Example user template
 
-# IntelliJ project files
+# Pycharm project files
 .idea
 *.iml
 out
 gen
 .vscode
+Lib
+Scripts
+pyvenv.cfg
 
 
