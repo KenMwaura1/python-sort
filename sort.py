@@ -18,11 +18,12 @@ numbers = Table('sort', metadata,
 runtime = Table('runtime', metadata,
                 Column('id', Integer(), primary_key=True),
                 Column('size_of_array', Integer()),
-                Column('time', DECIMAL()),
-                #Column('created_on', DateTime(), default=datetime.now),
+                Column('time', DECIMAL(precision=10, scale=5)),
+                Column('created_on', DateTime(), default=datetime.now),
                 autoload=True)
+metadata.drop_all(bind=conn, checkfirst=True)
 
-metadata.create_all()
+metadata.create_all(conn)
 tic = timeit.default_timer()
 size = 15
 random_list = np.random.randint(10, 1000, size)
@@ -37,12 +38,18 @@ toc = timeit.default_timer()
 
 duration = round(toc - tic, 5)
 
-ins = insert(runtime)
+runtime_ins = insert(runtime)
+numbers_ins = insert(numbers)
 
-r = conn.execute(ins,
+r = conn.execute(runtime_ins,
                  size_of_array=size,
                  time=duration,
                  created_on=datetime.now(),
                  )
 print(r.inserted_primary_key)
+
+for x in ordered_random_list:
+    r1 = conn.execute(numbers_ins,
+                      numbers=int(x),
+                      )
 print(f'The processes took {duration} seconds to complete')
