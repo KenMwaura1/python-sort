@@ -488,3 +488,5 @@ MigrationBackup/
 .idea
 /.vscode/
 /sort/pyvenv.cfg
+
+/sort/
