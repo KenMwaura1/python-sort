@@ -1,7 +1,7 @@
-numpy==2.4.1
-pandas==3.0.0
+numpy==2.4.2
+pandas==2.3.3
 PyMySQL==1.1.2
 python-dateutil==2.9.0.post0
 pytz==2025.2
 six==1.17.0
-SQLAlchemy==2.0.45
+SQLAlchemy==2.0.46
